@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Produit implements Serializable {
 	
-	private int id;
+	private long id;
 	private String nom;
 	private double prix;
 	
@@ -12,6 +12,14 @@ public class Produit implements Serializable {
 		super();
 	}
 	
+	
+	public Produit(String nom, double prix) {
+		super();
+		this.nom = nom;
+		this.prix = prix;
+	}
+
+
 	public Produit(int id, String nom, double prix) {
 		super();
 		this.id = id;
@@ -19,11 +27,11 @@ public class Produit implements Serializable {
 		this.prix = prix;
 	}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(long l) {
+		this.id = l;
 	}
 	public String getNom() {
 		return nom;
@@ -37,6 +45,10 @@ public class Produit implements Serializable {
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
+	public String toString() { 
+		return "Produit [idProduit=" + id + ", nomProduit=" + 
+		nom + ", prix=" + prix + "]"; 
+		} 
 	
 
 }

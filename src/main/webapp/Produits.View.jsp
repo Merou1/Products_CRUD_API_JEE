@@ -1,44 +1,45 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Product Search</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<meta http-equiv="Content-Type"
+	content="text/html; charset=windows-1256">
+<title>Insert title here</title>
+<link href="bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
-<body class="container mt-5">
-
-    <h2 class="text-center mb-4">Search Products</h2>
-    
-    <form action="Controller" method="post" class="form-inline justify-content-center mb-4">
-        <input type="text" class="form-control mr-2" placeholder="Enter mot cle" name="motCle">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Nom</th>
-                    <th>Prix</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${model.products}" var="p">
-                    <tr>
-                        <td>${p.id}</td>
-                        <td>${p.nom}</td>
-                        <td>${p.prix}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<body>
+	<%@include file="header.jsp"%>
+	<p></p>
+	<div class="container">
+		<div class="card">
+			<div class="card-header">Recherche des Produits</div>
+			<div class="card-body">
+				<form action="chercher.do" method="get">
+					<label>Mot Clé</label> <input type="text" name="motCle"
+						value="${model.motCle}" />
+					<button type="submit" class="btn btn-primary">Chercher</button>
+				</form>
+				<table class="table table-striped">
+					<tr>
+						<th>ID</th>
+						<th>Nom Produit</th>
+						<th>Prix</th>
+					</tr>
+					<c:forEach items="${model.products}" var="p">
+						<tr>
+							<td>${p.id}</td>
+							<td>${p.nom}</td>
+							<td>${p.prix}</td>
+							<td><a onclick="return confirm('Etes-vous sûr ?')"
+								href="supprimer.do?id=${p.id }">Supprimer</a></td>
+							<td><a href="editer.do?id=${p.id }">Edit</a></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
